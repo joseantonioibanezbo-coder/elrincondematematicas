@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://elrincondematematicas.es/sitemap.xml
