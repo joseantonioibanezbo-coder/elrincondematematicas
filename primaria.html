@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Primaria · El rincón de matemáticas</title><meta name="description" content="Lecciones de matemáticas de Primaria."><link rel="icon" href="img/avatar.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap">
+<style>:root{--ink:#1d2440;--muted:#5a6578;--bg:#fbf8f3;--card:#fff;--line:#e6e0d6;--cherry:#c8102e;--chip:#ffe14d;--green:#2f5a46;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-body:"Atkinson Hyperlegible",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:18px;line-height:1.5}
+a{color:var(--cherry)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 20px;background:#fff;border-bottom:1.5px solid var(--line);position:sticky;top:0;z-index:5}
+.brand img{height:42px;width:auto;display:block}
+.menu{display:flex;gap:6px;flex-wrap:wrap}
+.menu a{font-family:var(--f-display);font-weight:700;font-size:16px;color:var(--ink);text-decoration:none;padding:6px 12px;border-radius:999px}
+.menu a:hover,.menu a:focus-visible{background:var(--chip)}
+.wrap{max-width:960px;margin:0 auto;padding:24px 20px 56px}
+.crumb{font-size:15px;color:var(--muted);margin:0 0 8px}.crumb a{color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(30px,6vw,42px);margin:4px 0 12px;line-height:1.1}
+h2{font-family:var(--f-display);font-weight:800;font-size:26px;margin:32px 0 12px}
+.lead2{color:var(--muted);max-width:62ch;margin:0 0 20px}.muted{color:var(--muted)}
+.hero{text-align:center;padding:12px 0 8px}.logo{width:min(520px,90%);height:auto}
+.tag{font-family:var(--f-display);font-weight:700;font-size:clamp(20px,4vw,26px);margin:0 0 6px}
+.lead{color:var(--muted);max-width:56ch;margin:0 auto 18px}
+.sbtn{display:block;max-width:520px;margin:0 auto 26px;background:#fff;border:2px solid var(--line);border-radius:14px;padding:14px 18px;text-align:left;color:var(--muted);text-decoration:none;font-size:18px}
+.sbtn:hover{border-color:var(--cherry)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:8px 0 24px}
+.card{display:block;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:18px 20px;text-decoration:none;color:var(--ink);transition:transform .15s,border-color .15s}
+.card:hover,.card:focus-visible{border-color:var(--cherry);transform:translateY(-2px)}
+.card h3{margin:0 0 4px;font-family:var(--f-display);font-weight:800;font-size:22px}.card p{margin:0;color:var(--muted);font-size:15px}
+.grid.big .card{background:var(--green);color:#fff;border-color:var(--green);min-height:120px}.grid.big .card p{color:#d8e6dd}
+.card.hot{background:var(--chip);border-color:var(--chip)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+.chip{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;font-family:var(--f-display);font-weight:700;font-size:15px;color:var(--ink);text-decoration:none}
+.chip:hover{border-color:var(--cherry)}
+.les{background:#fff7d6;border:1.5px solid #f1dd8a;border-radius:18px;padding:6px 18px 14px;margin:16px 0}
+.les h2{margin-top:14px}
+details{background:#fff;border:1.5px solid var(--line);border-radius:14px;margin:0 0 10px}
+details[open]{border-color:#cfc6b6}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 18px;font-family:var(--f-display);font-weight:700;font-size:19px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸";color:var(--cherry);margin-right:4px;transition:transform .15s}
+details[open] summary::before{transform:rotate(90deg)}
+summary span:first-child{flex:1}
+.n{font-family:var(--f-body);font-weight:400;font-size:14px;color:var(--muted);white-space:nowrap}
+.vl{list-style:none;padding:0 12px 12px;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.wrap>.vl,.les .vl{padding:0}
+.v{display:grid;grid-template-columns:120px 1fr;grid-template-rows:auto auto;column-gap:10px;text-decoration:none;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px;height:100%}
+.v:hover,.v:focus-visible{border-color:var(--cherry)}
+.v img{grid-row:1/3;width:120px;height:68px;object-fit:cover;border-radius:8px;background:#ddd}
+.vt{font-size:15px;font-weight:700;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.vm{font-size:13px;color:var(--muted)}
+#q{width:100%;font:inherit;font-size:20px;padding:14px 16px;border:2px solid var(--line);border-radius:14px;margin:6px 0 8px}
+#q:focus{outline:none;border-color:var(--cherry)}
+.btn{display:block;width:max-content;max-width:100%;margin:30px auto 10px;background:var(--cherry);color:#fff;text-decoration:none;font-family:var(--f-display);font-weight:800;font-size:20px;border-radius:14px;padding:14px 26px}
+.btn:hover{background:#a00d25}
+.more{text-align:right;font-family:var(--f-display);font-weight:700}
+footer{text-align:center;color:var(--muted);font-size:15px;border-top:1.5px solid var(--line);padding:20px}
+@media (max-width:560px){.menu a{font-size:14px;padding:5px 8px}.brand img{height:34px}.v{grid-template-columns:100px 1fr}.v img{width:100px;height:56px}}
+@media (max-width:560px){.grid,.grid.big{grid-template-columns:1fr 1fr;gap:10px}.grid.big .card{min-height:0;padding:14px}.card h3{font-size:19px}}
+.dudas{background:#eef6f1;border:1.5px solid #cfe3d7;border-radius:18px;padding:4px 20px 14px;margin:24px 0}
+.dudas h2{margin-top:14px}
+footer p{margin:0 0 6px}
+</style></head><body>
+<header class="top"><a class="brand" href="index.html"><img src="img/logo.png" alt="El rincón de matemáticas"></a><nav class="menu"><a href="primaria.html">Primaria</a><a href="eso.html">ESO</a><a href="bachillerato.html">Bachillerato y PAU</a><a href="oposiciones.html">Oposiciones</a><a href="buscar.html">🔍 Buscar</a></nav></header>
+<main class="wrap"><p class="crumb"><a href="index.html">Inicio</a></p><h1>Primaria</h1><section class="les"><h2>⭐ Lecciones del rincón · 4º Primaria</h2><ul class="vl"><li><a class="v" href="https://youtu.be/jk1AdzB4kbI" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/jk1AdzB4kbI/mqdefault.jpg" alt=""><span class="vt">Operaciones combinadas de sumas y restas | Sumas y restas 2/3 · 4º Primaria</span><span class="vm">2026 · 3:50</span></a></li><li><a class="v" href="https://youtu.be/49-T1nXdQBg" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/49-T1nXdQBg/mqdefault.jpg" alt=""><span class="vt">Propiedades de la suma: conmutativa y asociativa | Sumas y restas 1/3 · 4º Primaria</span><span class="vm">2026 · 3:06</span></a></li></ul></section><p class="muted">Pronto, más cursos de Primaria.</p></main>
+<footer><p>¿Dudas sobre algún tema o ejercicio? Escríbeme a <a href="mailto:contacto@elrincondematematicas.es">contacto@elrincondematematicas.es</a></p>El rincón de matemáticas · José Antonio Ibáñez · <a href="https://www.youtube.com/@Elrinc%C3%B3ndematem%C3%A1ticas?sub_confirmation=1">Suscríbete en YouTube</a></footer><script data-goatcounter="https://elrincondematematicas.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>
