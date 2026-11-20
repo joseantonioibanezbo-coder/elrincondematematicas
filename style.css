@@ -129,3 +129,12 @@ body.playing #gplay{scroll-margin-top:6px}
 .v{grid-template-columns:120px minmax(0,1fr);min-width:0;box-sizing:border-box;max-width:100%}
 .v span{min-width:0;overflow-wrap:anywhere}
 @media (max-width:560px){.v{grid-template-columns:100px minmax(0,1fr)}}
+@media (max-width:560px){
+.top{position:static;padding:6px 10px;gap:2px 8px;justify-content:center}
+.brand img{height:28px}
+.menu{gap:0;justify-content:center}
+.menu a{font-size:13.5px;padding:4px 7px}
+.menu sup,.menu .nw{font-size:9px}
+.v{grid-template-columns:1fr;justify-items:center;text-align:center;row-gap:6px;padding:10px}
+.v img{grid-row:auto;width:100%;max-width:320px;height:auto;aspect-ratio:16/9}
+}

@@ -40,7 +40,7 @@ summary::before{content:"▸";color:var(--cherry);margin-right:4px;transition:tr
 details[open] summary::before{transform:rotate(90deg)}
 summary span:first-child{flex:1}
 .n{font-family:var(--f-body);font-weight:400;font-size:14px;color:var(--muted);white-space:nowrap}
-.vl{list-style:none;padding:0 12px 12px;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.vl{list-style:none;padding:0 12px 12px;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:12px}
 .wrap>.vl,.les .vl{padding:0}
 .v{display:grid;grid-template-columns:120px 1fr;grid-template-rows:auto auto;column-gap:10px;text-decoration:none;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px;height:100%}
 .v:hover,.v:focus-visible{border-color:var(--cherry)}
@@ -129,6 +129,18 @@ details.gcur .glv{margin:0 12px 12px}.glv button{font-size:17px}
 body.playing .top{display:none}
 body.playing #gplay{scroll-margin-top:6px}
 @media (max-width:560px){body.playing .gbar{font-size:16px;padding:6px 12px}body.playing .gq{font-size:34px;margin:10px 0 2px}body.playing .gin{font-size:32px;min-height:42px}body.playing .gfb{min-height:26px;margin:4px 0;font-size:15px}body.playing .gkp{gap:6px}body.playing .gkp button{font-size:22px;padding:8px 0}}
+.v{grid-template-columns:120px minmax(0,1fr);min-width:0;box-sizing:border-box;max-width:100%}
+.v span{min-width:0;overflow-wrap:anywhere}
+@media (max-width:560px){.v{grid-template-columns:100px minmax(0,1fr)}}
+@media (max-width:560px){
+.top{position:static;padding:6px 10px;gap:2px 8px;justify-content:center}
+.brand img{height:28px}
+.menu{gap:0;justify-content:center}
+.menu a{font-size:13.5px;padding:4px 7px}
+.menu sup,.menu .nw{font-size:9px}
+.v{grid-template-columns:1fr;justify-items:center;text-align:center;row-gap:6px;padding:10px}
+.v img{grid-row:auto;width:100%;max-width:320px;height:auto;aspect-ratio:16/9}
+}
 </style></head><body>
 <header class="top"><a class="brand" href="index.html"><img src="img/logo.png" alt="El rincón de matemáticas"></a><nav class="menu"><a href="primaria.html">Primaria</a><a href="eso.html">ESO</a><a href="bachillerato.html">Bachillerato y PAU</a><a href="oposiciones.html">Oposiciones</a><a href="entrena.html">🧠 Entrena <sup class="nw">NUEVO</sup></a><a href="buscar.html">🔍 Buscar</a></nav></header>
 <main class="wrap"><p class="crumb"><a href="index.html">Inicio</a></p><h1>Oposiciones de Secundaria · Matemáticas</h1><p class="lead2">Problemas de oposiciones de profesor de Matemáticas resueltos y comentados paso a paso, por convocatorias.</p><details open><summary><span>Madrid 2023</span><span class="n">3 problemas</span></summary><div class="pbin"><ul class="vl"><li><a class="v" href="https://youtu.be/wSR1pm-OGrs" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/wSR1pm-OGrs/mqdefault.jpg" alt="" onerror="fb(this)"><span class="vt">Oposiciones profesor de Secundaria ▪︎ Matemáticas · Madrid 2023 · P1: límite de (−1)ⁿ/n!</span><span class="vm">2026 · 5:03</span></a></li><li><a class="v" href="https://youtu.be/IDyiBL-9Cr0" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/IDyiBL-9Cr0/mqdefault.jpg" alt="" onerror="fb(this)"><span class="vt">Oposiciones profesor de Secundaria ▪︎ Matemáticas · Madrid 2023 · P2: cardioide y longitud de arco</span><span class="vm">2026 · 6:56</span></a></li><li><a class="v" href="https://youtu.be/kHF3Ql0CtIw" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/kHF3Ql0CtIw/mqdefault.jpg" alt="" onerror="fb(this)"><span class="vt">Oposiciones Matemáticas Madrid 2023 · Problema 3: dos urnas y probabilidad total</span><span class="vm">2026</span></a></li></ul></div></details></main>
