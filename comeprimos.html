@@ -201,22 +201,22 @@ details.mas>summary{cursor:pointer;list-style:none;display:flex;align-items:cent
 .cpov button,.cpgo{font:inherit;font-weight:700;font-size:18px;padding:10px 22px;border-radius:999px;border:0;background:#e0367a;color:#fff;cursor:pointer;margin-top:6px}
 .cpmsg{min-height:30px;text-align:center;font-size:16px;margin:8px 0 4px}
 .cpmsg.ok{color:#2f7a3e}.cpmsg.ko{color:#c8102e;font-weight:700}
-.cppad{display:grid;grid-template-columns:repeat(3,64px);grid-template-rows:repeat(2,52px);gap:6px;justify-content:center;margin:6px 0 4px}
+.cppad{display:grid;grid-template-columns:repeat(3,64px) 110px;grid-template-rows:repeat(2,52px);gap:6px;justify-content:center;margin:6px 0 4px}
 .cppad button{font-size:24px;border-radius:12px;border:1.5px solid #d5ddd6;background:#fff;color:#1d2440;cursor:pointer;touch-action:manipulation}
 .cppad button:active{background:#ffe14d}
-.cppad .u{grid-column:2}.cppad .l{grid-column:1;grid-row:2}.cppad .d{grid-column:2;grid-row:2}.cppad .r{grid-column:3;grid-row:2}
-.cppad.off{display:none}
+.cppad .u{grid-column:2;grid-row:1}.cppad .e{grid-column:4;grid-row:1/3;background:#e0367a;color:#fff;border-color:#e0367a;font-size:19px;font-weight:700}.cppad .e:active{background:#b8215e}.cppad .l{grid-column:1;grid-row:2}.cppad .d{grid-column:2;grid-row:2}.cppad .r{grid-column:3;grid-row:2}
+.cppad.off button[data-d]{display:none}.cppad.off{grid-template-columns:160px;grid-template-rows:48px}.cppad.off .e{grid-column:1;grid-row:1}
 .cpend{display:none}
 </style>
 <section class="cp gm">
 <h1>👾 Come primos</h1>
-<p class="muted">Recorre el laberinto con el gato y cómete solo los <b>números primos</b>. Si te comes un número compuesto, o te pilla un «compuesto», pierdes una vida.</p>
+<p class="muted">Recorre el laberinto con el gato: puedes pasar por encima de cualquier número sin comértelo. Ponte encima de un <b>número primo</b> y pulsa <b>«😺 Comer»</b>. Si te comes un compuesto, o te pilla un «compuesto», pierdes una vida.</p>
 <div class="cpbar" id="cpbar"><span>❤️ <span id="cpv">3</span></span><span>Nivel <span id="cpn">1</span></span><span>Primos: <span id="cps">0</span></span><span class="sp"></span><button id="cpp" aria-label="Pausa">⏸</button></div>
 <div class="cpbox" id="cpbox"><canvas id="cpc"></canvas>
- <div class="cpov" id="cpov"><h2>¿Preparado?</h2><p>Muévete con las flechas del teclado, deslizando el dedo sobre el laberinto o con los botones de abajo.</p><p class="muted">Recuerda: un número primo solo tiene dos divisores, el 1 y él mismo. El 1 no es primo.</p><button id="cpgo">▶ Jugar</button></div>
+ <div class="cpov" id="cpov"><h2>¿Preparado?</h2><p>Muévete con las flechas (o deslizando el dedo). Pasar por encima de un número no te lo come: para comer, pulsa «😺 Comer», la barra espaciadora o toca el laberinto.</p><p class="muted">Recuerda: un número primo solo tiene dos divisores, el 1 y él mismo. El 1 no es primo.</p><button id="cpgo">▶ Jugar</button></div>
 </div>
 <div class="cpmsg" id="cpmsg">&nbsp;</div>
-<div class="cppad" id="cppad"><button class="u" data-d="0" aria-label="Arriba">▲</button><button class="l" data-d="3" aria-label="Izquierda">◀</button><button class="d" data-d="2" aria-label="Abajo">▼</button><button class="r" data-d="1" aria-label="Derecha">▶</button></div>
+<div class="cppad" id="cppad"><button class="u" data-d="0" aria-label="Arriba">▲</button><button class="e" id="cpeat">😺 Comer</button><button class="l" data-d="3" aria-label="Izquierda">◀</button><button class="d" data-d="2" aria-label="Abajo">▼</button><button class="r" data-d="1" aria-label="Derecha">▶</button></div>
 <div id="gend" class="cpend">
  <div id="gsend"><label for="gname">Tu apodo para el ranking (nunca tu nombre completo):</label>
  <div class="grow"><input id="gname" maxlength="14" autocomplete="off" placeholder="Ej.: Pitagorín"><button id="gok">Guardar</button></div><p id="gmsg" class="muted"></p></div>
@@ -265,12 +265,12 @@ function start(){$('gend').style.display='none';try{$('cpbar').scrollIntoView({b
 function run(){state='play';$('cpov').style.display='none';$('cpp').textContent='⏸';last=performance.now();requestAnimationFrame(loop);}
 function pause(){if(state!=='play')return;state='pause';$('cpp').textContent='▶';ov('Pausa','<p>Pulsa para seguir.</p>','▶ Seguir',run);}
 function ov(t,h,b,fn){$('cpov').innerHTML='<h2>'+t+'</h2>'+h+'<button id="cpgo">'+b+'</button>';$('cpov').style.display='flex';$('cpgo').onclick=fn;}
-function arrive(){const k=pl.x+','+pl.y;if(k in num){const v=num[k];delete num[k];
+function eat(){if(state!=='play')return;const[px,py]=pos(pl),x=Math.round(px),y=Math.round(py),k=x+','+y;if(!(k in num)){msg('Ponte encima de un número y pulsa «Comer».');return;}{if(k in num){const v=num[k];delete num[k];
   if(isP(v)){score++;primesLeft--;hud();msg('✔ '+v+' es primo','ok');
    if(!primesLeft){state='wait';level++;hud();setTimeout(()=>{ov('¡Nivel '+(level-1)+' superado! 🎉','<p>Ahora con números hasta el '+TOP[Math.min(level,TOP.length)-1]+'.</p>','▶ Nivel '+level,()=>{board();reset();inv=1;run();});},400);}}
   else{msg('✘ '+(v===1?'El 1 no es primo: solo tiene un divisor.':v+' = '+fact(v)+' no es primo.'),'ko');hit(false);}}
- bfs();}
-function hit(catchd){if(inv>0)return;lives--;hud();flash=.5;inv=2;
+}}
+function hit(catchd){if(catchd&&inv>0)return;lives--;hud();flash=.5;inv=2;
  if(lives<=0){state='over';setTimeout(over,600);return;}
  if(catchd){msg('¡Te ha pillado un compuesto! 👾','ko');reset();inv=2;}}
 function canGo(e,d){return d>=0&&!wall(e.x+DX[d],e.y+DY[d]);}
@@ -282,7 +282,7 @@ function chooseE(e){const opts=[0,1,2,3].filter(d=>canGo(e,d)&&(d!==(e.d+2)%4||e
 function pos(e){return [e.x+(e.d>=0?DX[e.d]*e.t:0),e.y+(e.d>=0?DY[e.d]*e.t:0)];}
 function loop(now){if(state!=='play'){draw();return;}let dt=Math.min((now-last)/1000,.05);last=now;
  if(inv>0)inv-=dt;if(flash>0)flash-=dt;pl.mouth+=dt*9;
- if(step(pl,dt,chooseP))arrive();
+ if(step(pl,dt,chooseP))bfs();
  if(state==='play'){const[px,py]=pos(pl);for(const e of en){if(e.wait>0){e.wait-=dt;continue;}step(e,dt,chooseE);const[ex,ey]=pos(e);
   if(Math.hypot(ex-px,ey-py)<.62){hit(true);break;}}}
  draw();if(state==='play')requestAnimationFrame(loop);}
@@ -301,7 +301,10 @@ function cat(){const[x,y]=pos(pl),X=(x+.5)*C,Y=(y+.5)*C,r=C*.42;if(inv>0&&state=
  cx.fillStyle='#fff';cx.beginPath();cx.arc(X-r*.36+ox*r*.12,Y-r*.2+oy*r*.12,r*.2,0,7);cx.arc(X+r*.36+ox*r*.12,Y-r*.2+oy*r*.12,r*.2,0,7);cx.fill();
  cx.fillStyle='#1d2440';cx.beginPath();cx.arc(X-r*.36+ox*r*.2,Y-r*.2+oy*r*.2,r*.1,0,7);cx.arc(X+r*.36+ox*r*.2,Y-r*.2+oy*r*.2,r*.1,0,7);cx.fill();
  const m=(Math.sin(pl.mouth)+1)/2*r*.22+r*.06;cx.fillStyle='#c8102e';cx.beginPath();cx.ellipse(X+ox*r*.3,Y+r*.38+oy*r*.15,r*.24,m,0,0,7);cx.fill();
- cx.strokeStyle='#4a4e57';cx.lineWidth=1;cx.beginPath();for(const s of[-1,1])for(const k of[0,1]){cx.moveTo(X+s*r*.45,Y+r*.25+k*r*.15);cx.lineTo(X+s*r*1.05,Y+r*.18+k*r*.3);}cx.stroke();}
+ cx.strokeStyle='#4a4e57';cx.lineWidth=1;cx.beginPath();for(const s of[-1,1])for(const k of[0,1]){cx.moveTo(X+s*r*.45,Y+r*.25+k*r*.15);cx.lineTo(X+s*r*1.05,Y+r*.18+k*r*.3);}cx.stroke();
+ const k=Math.round(x)+','+Math.round(y);if(k in num){const v=String(num[k]),fs=Math.round(C*.55);cx.font='700 '+fs+'px "Atkinson Hyperlegible",system-ui,sans-serif';const w=cx.measureText(v).width+10,bx=X-w/2,by=Y-r-fs-8;
+  cx.fillStyle='#ffe14d';cx.strokeStyle='#1d2440';cx.lineWidth=1.5;cx.beginPath();cx.roundRect?cx.roundRect(bx,by,w,fs+6,6):cx.rect(bx,by,w,fs+6);cx.fill();cx.stroke();
+  cx.fillStyle='#1d2440';cx.textAlign='center';cx.textBaseline='middle';cx.fillText(v,X,by+(fs+6)/2+1);}}
 function ghost(e){const[x,y]=pos(e),X=(x+.5)*C,Y=(y+.5)*C,s=C*.4;cx.fillStyle=e.c;cx.beginPath();cx.roundRect?cx.roundRect(X-s,Y-s,2*s,2*s,s*.45):cx.rect(X-s,Y-s,2*s,2*s);cx.fill();
  cx.strokeStyle='#fff';cx.lineWidth=Math.max(1.5,C*.07);const d=e.f,ox=DX[d]*s*.15,oy=DY[d]*s*.15;
  for(const k of[-1,1]){const a=X+k*s*.42+ox,b=Y-s*.18+oy,q=s*.17;cx.beginPath();cx.moveTo(a-q,b-q);cx.lineTo(a+q,b+q);cx.moveTo(a+q,b-q);cx.lineTo(a-q,b+q);cx.stroke();}
@@ -311,12 +314,12 @@ function over(){let b=0;try{b=+localStorage.getItem('erm_best_'+LVL)||0;if(score
  $('gend').style.display=RANK&&score>0?'block':'none';$('gsend').hidden=false;$('gmsg').textContent='';try{$('gname').value=localStorage.getItem('erm_name')||'';}catch(e){}}
 // controles
 const KEY={ArrowUp:0,ArrowRight:1,ArrowDown:2,ArrowLeft:3,w:0,d:1,s:2,a:3,W:0,D:1,S:2,A:3};
-document.addEventListener('keydown',ev=>{if(ev.target.tagName==='INPUT')return;if(ev.key in KEY){ev.preventDefault();want=KEY[ev.key];}else if(ev.key===' '||ev.key==='p'){ev.preventDefault();state==='play'?pause():state==='pause'&&run();}});
-let ts=null;cv.addEventListener('touchstart',ev=>{const t=ev.touches[0];ts=[t.clientX,t.clientY];},{passive:true});
+document.addEventListener('keydown',ev=>{if(ev.target.tagName==='INPUT')return;if(ev.key in KEY){ev.preventDefault();want=KEY[ev.key];}else if(ev.key===' '||ev.key==='Enter'){ev.preventDefault();eat();}else if(ev.key==='p'||ev.key==='Escape'){ev.preventDefault();state==='play'?pause():state==='pause'&&run();}});
+let ts=null,sw=false;cv.addEventListener('touchstart',ev=>{const t=ev.touches[0];ts=[t.clientX,t.clientY];sw=false;},{passive:true});
 cv.addEventListener('touchmove',ev=>{if(!ts)return;ev.preventDefault();const t=ev.touches[0],dx=t.clientX-ts[0],dy=t.clientY-ts[1];
- if(Math.max(Math.abs(dx),Math.abs(dy))>18){want=Math.abs(dx)>Math.abs(dy)?(dx>0?1:3):(dy>0?2:0);ts=[t.clientX,t.clientY];}},{passive:false});
-cv.addEventListener('touchend',()=>ts=null);
-document.querySelectorAll('#cppad button').forEach(b=>b.addEventListener('pointerdown',ev=>{ev.preventDefault();want=+b.dataset.d;}));
+ if(Math.max(Math.abs(dx),Math.abs(dy))>18){want=Math.abs(dx)>Math.abs(dy)?(dx>0?1:3):(dy>0?2:0);ts=[t.clientX,t.clientY];sw=true;}},{passive:false});
+cv.addEventListener('touchend',()=>{if(ts&&!sw)eat();ts=null;});cv.addEventListener('click',ev=>{if(!('ontouchstart' in window))eat();});
+document.querySelectorAll('#cppad button[data-d]').forEach(b=>b.addEventListener('pointerdown',ev=>{ev.preventDefault();want=+b.dataset.d;}));$('cpeat').addEventListener('pointerdown',ev=>{ev.preventDefault();eat();});
 $('cpp').onclick=()=>state==='play'?pause():state==='pause'&&run();
 $('cpgo').onclick=start;
 document.addEventListener('visibilitychange',()=>{if(document.hidden)pause();});
