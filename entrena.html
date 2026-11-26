@@ -211,7 +211,7 @@ details.mas>summary{cursor:pointer;list-style:none;display:flex;align-items:cent
 .hero .cifras{margin:6px 0 16px;color:var(--ink,#1d2440);font-size:16px}
 </style></head><body>
 <header class="top"><a class="brand" href="index.html"><span class="luto" id="luto" role="img" aria-label="Lazo lila. No a la violencia de género" title="En recuerdo de nuestra vecina. No a la violencia de género."><svg viewBox="0 0 40 46" aria-hidden="true"><path d="M7 44 L24.5 13 C28.5 6 25 2 20 2 C15 2 11.5 6 15.5 13 L33 44" fill="none" stroke="#9b59c4" stroke-width="7.5" stroke-linejoin="round"/></svg></span><script>try{if(Date.now()>=Date.parse("2026-11-29T00:00:00+01:00"))document.getElementById("luto").remove()}catch(e){}</script><img src="img/logo.png" alt="El rincón de matemáticas"></a><nav class="menu"><a href="primaria.html">Primaria</a><a href="eso.html">ESO</a><a href="bachillerato.html">Bachillerato y PAU</a><a href="oposiciones.html">Oposiciones</a><a href="entrena.html">🧠 Entrena</a><a href="curiosidades.html">✨ Curiosidades <sup class="nw">NUEVO</sup></a><a href="profesorado.html">👩‍🏫 Profesorado</a><a href="buscar.html">🔍 Buscar</a></nav></header><div class="lutob" id="lutob">💜 Nuestro recuerdo para nuestra vecina de Bullas, víctima de la violencia de género, y todo nuestro cariño a su familia. Ni una más.</div><style>.promo{display:none}</style><script>try{if(Date.now()>=Date.parse("2026-11-29T00:00:00+01:00")){document.getElementById("lutob").remove();document.querySelectorAll(".promo").forEach(p=>p.style.display="block")}}catch(e){}</script><div class="promo" id="promo"><a href="comeprimos.html"><span class="pre">👾</span><span class="prt"><b>Nuevo juego: Come primos</b> <span class="prd">Recorre el laberinto y cómete solo los números primos. ¿Cuántos niveles aguantas?</span></span><span class="prg">¡Jugar! →</span></a><button class="prx" aria-label="Cerrar" onclick="this.parentNode.remove();try{localStorage.setItem('promo_cp',1)}catch(e){}">✕</button></div><script>try{if(localStorage.getItem('promo_cp'))document.getElementById('promo').remove()}catch(e){}</script>
-<main class="wrap"><p class="crumb"><a href="index.html">Inicio</a></p><script>window.RANK_URL='https://script.google.com/macros/s/AKfycbyvU19C7gI52Dkoeeq0gnU-4sqEIWbZZlULHvtVami3XzTHzomID0icOcxDWoWOZ1z5dg/exec';</script><style>.fab{display:none}.gq.mono{font-size:32px}.gkp .gl{font-family:"KaTeX_Main",Georgia,serif;font-style:italic}</style>
+<main class="wrap"><p class="crumb"><a href="index.html">Inicio</a></p><script>window.RANK_URL='https://script.google.com/macros/s/AKfycbyvU19C7gI52Dkoeeq0gnU-4sqEIWbZZlULHvtVami3XzTHzomID0icOcxDWoWOZ1z5dg/exec';</script><style>.fab{display:none}.gq.mono{font-size:32px}.gnota{background:#fff8e1;border:1.5px solid #f2d27a;border-radius:14px;padding:12px 16px;margin:12px auto;max-width:520px;font-size:17px;line-height:1.45}.gnota p{margin:8px 0}.gnota button{font:inherit;font-weight:800;font-size:20px;background:#e0367a;color:#fff;border:0;border-radius:12px;padding:12px 28px;cursor:pointer;display:block;margin:10px auto 2px}.gtip{text-align:center;font-size:14px;color:#5a6578;margin:2px 0 6px}.gkp .gl{font-family:"KaTeX_Main",Georgia,serif;font-style:italic}</style>
 <section class="gm" id="gm">
 <h1>🧠 Entrena tu cálculo mental</h1>
 <p class="muted">Rondas de 60 segundos. Cada acierto suma un punto. ¿Entras en el top 5?</p>
@@ -221,11 +221,13 @@ details.mas>summary{cursor:pointer;list-style:none;display:flex;align-items:cent
  <div id="gclOn" hidden><b>👩‍🏫 Clase <span id="gcc"></span></b> · Vuestro ranking es solo de la clase. <span class="grow"><button id="gshare" class="g2">📋 Copiar enlace para la clase</button><button id="gleave" class="g2">Salir del modo clase</button></span><span id="gcm" class="muted"></span></div>
 </div>
 <div id="gsel"></div>
+<div id="gintro" class="gnota" hidden><b>✏️ Antes de empezar</b><p>Para poner el <b>exponente</b>, escribe el número <b>justo después de la letra</b>: pulsa <b>x</b> y luego <b>3</b> y verás x<sup>3</sup>. Si la letra va sin número, el exponente es 1 (no hace falta escribirlo).</p><p>El resultado tiene que estar <b>simplificado al máximo</b>: si no lo está, cuenta como <b>fallo</b> (nada de 1x, x·x ni x<sup>1</sup>).</p><button id="gempieza">¡Empezar!</button></div>
 <div id="gplay" hidden>
  <div class="gbar"><span id="gt">60</span> s · <span id="gs">0</span> aciertos<button id="gq" class="gx" aria-label="Salir">✕</button></div>
  <div class="gq" id="gqq"></div>
  <div class="gin" id="gin">&nbsp;</div>
  <div class="gfb" id="gfb">&nbsp;</div>
+ <p class="gtip" id="gtip" hidden>Exponente: el número justo después de la letra (x 3 → x<sup>3</sup>)</p>
  <div class="gkp" id="gkp"></div>
 </div>
 <div id="gend" hidden>
@@ -321,8 +323,8 @@ $('gnew').onclick=()=>{const A='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let c='';for(l
 $('gleave').onclick=()=>setClase('');
 $('gshare').onclick=()=>{const u=location.origin+location.pathname+'?clase='+clase;try{navigator.clipboard.writeText(u).then(()=>$('gcm').textContent='Enlace copiado: '+u,()=>$('gcm').textContent=u);}catch(e){$('gcm').textContent=u;}};
 function kp(){const g=G[lvl];$('gqq').classList.toggle('mono',!!g.mono);if(g.mc){$('gin').hidden=true;return;}$('gin').hidden=false;
- if(g.mono){const ks=['7','8','9','x','4','5','6','y','1','2','3','^','−','0'];$('gkp').className='gkp g4';
-  $('gkp').innerHTML=ks.map(k=>'<button'+(k==='x'||k==='y'?' class="gl"':'')+'>'+(k==='^'?'x<sup>n</sup>':k)+'</button>').join('')+'<button class="g2c">⌫</button><button class="gok">OK</button>';
+ if(g.mono){const ks=['7','8','9','x','4','5','6','y','1','2','3','−'];$('gkp').className='gkp g4';
+  $('gkp').innerHTML=ks.map(k=>'<button'+(k==='x'||k==='y'?' class="gl"':'')+'>'+(k==='^'?'x<sup>n</sup>':k)+'</button>').join('')+'<button class="g2c">0</button><button class="g2c">⌫</button><button class="gok">OK</button>';
   $('gkp').querySelectorAll('button').forEach(b=>b.onclick=()=>key(b.textContent==='xn'?'^':b.textContent));return;}
  const ks=['7','8','9','4','5','6','1','2','3','−','0','⌫'];
  $('gkp').className='gkp';$('gkp').innerHTML=ks.map(k=>'<button>'+k+'</button>').join('')+(g.fr?'<button class="gsl">/</button><button class="gok g2c">OK</button>':'<button class="gok">OK</button>');
@@ -339,12 +341,14 @@ function ans(){if(G[lvl].mono)return mh(cur.a);if(Array.isArray(cur.a))return fr
 function verdict(ok){if(ok){score++;$('gs').textContent=score;$('gfb').className='gfb ok';$('gfb').textContent='✔ ¡Bien!';}
  else{$('gfb').className='gfb ko';$('gfb').innerHTML='✘ '+cur.q+' = '+ans()+'<br><small>'+cur.why+'</small>';}next();}
 function check(){if(!inp||inp==='−'||inp.endsWith('/'))return;if(G[lvl].mono){if(inp.endsWith('^'))return;const p=monoP(inp);if(!p)return verdict(false);
- const a=cur.a,okv=p.o.c===a.c&&p.o.x===a.x&&p.o.y===a.y;if(okv&&p.flojo){$('gfb').className='gfb';$('gfb').textContent='Es correcto, pero simplifícalo del todo.';inp='';$('gin').textContent=' ';return;}return verdict(okv);}
+ const a=cur.a,okv=p.o.c===a.c&&p.o.x===a.x&&p.o.y===a.y;if(okv&&p.flojo){cur.why='El valor es correcto, pero no está simplificado al máximo. '+cur.why;return verdict(false);}return verdict(okv);}
  const t2=inp.replace(/−/g,'-');
  if(Array.isArray(cur.a)){const [n,d]=t2.includes('/')?t2.split('/').map(Number):[Number(t2),1];if(!d)return;
   const [rn,rd]=red(n,d),okv=rn===cur.a[0]&&rd===cur.a[1];if(okv&&gcd(n,d)>1){$('gfb').className='gfb';$('gfb').textContent='Es correcto, pero simplifícala del todo.';inp='';$('gin').textContent=' ';return;}return verdict(okv);}
  verdict(parseInt(t2,10)===cur.a);}
-function start(l){lvl=l;score=0;t=60;$('gs').textContent=0;$('gt').textContent=60;$('gfb').textContent=' ';$('gfb').className='gfb';
+function start(l){if(G[l].mono&&!$('gintro').dataset.ok){$('gintro').dataset.ok='';$('gsel').hidden=true;$('gcl').hidden=true;$('gend').hidden=true;$('gintro').hidden=false;
+ $('gempieza').onclick=()=>{$('gintro').hidden=true;$('gintro').dataset.ok='1';start(l);};$('gintro').scrollIntoView({block:'center'});return;}
+ delete $('gintro').dataset.ok;$('gtip').hidden=!G[l].mono;lvl=l;score=0;t=60;$('gs').textContent=0;$('gt').textContent=60;$('gfb').textContent=' ';$('gfb').className='gfb';
  $('gsel').hidden=true;$('gcl').hidden=true;$('gend').hidden=true;$('gplay').hidden=false;kp();next();showRank();$('gplay').scrollIntoView();
  clearInterval(timer);timer=setInterval(()=>{t--;$('gt').textContent=t;if(t<=0)end();},1000);}
 function end(){clearInterval(timer);timer=null;$('gplay').hidden=true;$('gend').hidden=false;const k='erm_best_'+lvl;
