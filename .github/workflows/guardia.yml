@@ -1,0 +1,26 @@
+name: Guardia de fichas y exámenes
+on:
+  push:
+    branches: [main]
+    paths: ['pdf/**']
+permissions:
+  contents: write
+jobs:
+  guardia:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Comprobar que ningún PDF vuelve a una versión antigua
+        run: python3 .github/guardia/guardia_pdf.py "${{ github.event.before }}" "${{ github.sha }}"
+      - name: Deshacer el retroceso
+        run: |
+          if [ -s restaurados.txt ]; then
+            git config user.name "Guardia de la web"
+            git config user.email "joseantonioibanezbo@gmail.com"
+            git add pdf
+            git commit -m "Guardia: restaura PDF que volvían a una versión antigua" -m "$(cat restaurados.txt)"
+            git push
+            echo "::warning::Se han restaurado PDF que volvían a una versión antigua: $(cat restaurados.txt)"
+          fi
