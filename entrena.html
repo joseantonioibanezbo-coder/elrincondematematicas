@@ -214,7 +214,7 @@ details.mas>summary{cursor:pointer;list-style:none;display:flex;align-items:cent
 <main class="wrap"><p class="crumb"><a href="index.html">Inicio</a></p><script>window.RANK_URL='https://script.google.com/macros/s/AKfycbyvU19C7gI52Dkoeeq0gnU-4sqEIWbZZlULHvtVami3XzTHzomID0icOcxDWoWOZ1z5dg/exec';</script><style>.fab{display:none}.gq.mono{font-size:32px}.gq.suc{font-size:24px;line-height:1.4}.gcampo{font-weight:800;font-size:14px;color:#2f5a46;text-transform:uppercase;letter-spacing:.04em;margin:6px 2px -4px}.glv a{display:block;font-weight:700;font-size:17px;padding:14px 16px;border-radius:14px;border:2px solid #2f5a46;background:#fff;color:#1d2440;text-decoration:none}.glv .gnv{background:#fff4f8;border-color:#e0367a}.gnw{display:inline-block;background:#e0367a;color:#fff;font-size:11px;font-weight:800;letter-spacing:.05em;border-radius:6px;padding:2px 7px;margin-left:8px;vertical-align:2px}.gcur summary .n .gnw{margin:0 4px 0 0}.gnota{background:#fff8e1;border:1.5px solid #f2d27a;border-radius:14px;padding:12px 16px;margin:12px auto;max-width:520px;font-size:17px;line-height:1.45}.gnota p{margin:8px 0}.gnota button{font:inherit;font-weight:800;font-size:20px;background:#e0367a;color:#fff;border:0;border-radius:12px;padding:12px 28px;cursor:pointer;display:block;margin:10px auto 2px}.gtip{text-align:center;font-size:14px;color:#5a6578;margin:2px 0 6px}.gkp .gl{font-family:"KaTeX_Main",Georgia,serif;font-style:italic}</style>
 <section class="gm" id="gm">
 <h1>🧠 Entrena tu cálculo mental</h1>
-<p class="muted">Rondas de 60 segundos (90 en los de monomios de 2º ESO y sucesiones). Cada acierto suma un punto. ¿Entras en el top 5?</p>
+<p class="muted">Rondas de 60 segundos (90 en monomios de 2º ESO y 3 minutos en sucesiones). Cada acierto suma un punto. ¿Entras en el top 5?</p>
 <a class="nuevo" href="comeprimos.html"><span class="nb">🆕 NUEVO JUEGO</span><span class="nt">👾 Come primos</span><span class="nd">Un laberinto tipo comecocos: cómete solo los números primos y esquiva a los compuestos.</span><span class="ng">¡Jugar ahora! →</span></a>
 <div class="gcl" id="gcl">
  <div id="gclOff"><b>👩‍🏫 Modo clase</b> · ¿Tu profe te ha dado un código? <span class="grow"><input id="gcode" maxlength="8" placeholder="Código" autocomplete="off"><button id="gjoin">Entrar</button><button id="gnew" class="g2">Soy profe: crear código</button></span></div>
@@ -269,7 +269,7 @@ const G={
   return {q:fr(a,b)+' + '+fr(c,d)+' · '+fr(e,g),a:red(N,m),why:'Primero el producto: '+frs(pn,pd)+' · después '+fr(a,b)+' + '+frs(pn,pd)+' = '+frs(N,m)};}},
  mono:{t:'Operaciones con monomios',mono:1,g(){return monoG();}},
  mono2:{t:'Operaciones sencillas con monomios',mono:1,dur:90,g(){return monoG2();}},
- suces:{t:'Sucesiones y progresiones',mix:1,fr:1,dur:90,g(){return sucG();}},
+ suces:{t:'Sucesiones y progresiones',mix:1,fr:1,dur:180,intro:'<b>✏️ Coge papel y lápiz</b><p>En este juego hay que hacer cuentas: <b>ten a mano papel y lápiz</b> antes de empezar.</p><p>Tienes <b>3 minutos</b>. Unas preguntas se responden con el teclado (las fracciones, con la tecla <b>/</b>) y otras eligiendo una opción.</p><button id="gempieza">¡Empezar!</button>',g(){return sucG();}},
  deriv:{t:'Derivadas elementales',mc:1,g(){const k=R(2,5),n=R(2,6);const T=[
   ()=>['('+k+'x<sup>'+n+'</sup>)′',k*n+'x<sup>'+(n-1)+'</sup>',[k+'x<sup>'+(n-1)+'</sup>',k*n+'x<sup>'+n+'</sup>',k*n+'x<sup>'+(n+1)+'</sup>'],'(x<sup>n</sup>)′ = n·x<sup>n−1</sup>'],
   ()=>['(sen '+k+'x)′',k+' cos '+k+'x',['cos '+k+'x','−'+k+' cos '+k+'x',k+' sen '+k+'x'],'(sen u)′ = u′·cos u'],
@@ -410,7 +410,8 @@ function check(){if(!inp||inp==='−'||inp.endsWith('/'))return;if(G[lvl].mono){
  if(Array.isArray(cur.a)){const [n,d]=t2.includes('/')?t2.split('/').map(Number):[Number(t2),1];if(!d)return;
   const [rn,rd]=red(n,d),okv=rn===cur.a[0]&&rd===cur.a[1];if(okv&&gcd(n,d)>1){$('gfb').className='gfb';$('gfb').textContent='Es correcto, pero simplifícala del todo.';inp='';$('gin').textContent=' ';return;}return verdict(okv);}
  verdict(parseInt(t2,10)===cur.a);}
-function start(l){if(G[l].mono&&!$('gintro').dataset.ok){$('gintro').dataset.ok='';$('gsel').hidden=true;$('gcl').hidden=true;$('gend').hidden=true;$('gintro').hidden=false;
+const INTRO0=$('gintro').innerHTML;
+function start(l){if((G[l].mono||G[l].intro)&&!$('gintro').dataset.ok){$('gintro').innerHTML=G[l].intro||INTRO0;$('gintro').dataset.ok='';$('gsel').hidden=true;$('gcl').hidden=true;$('gend').hidden=true;$('gintro').hidden=false;
  $('gempieza').onclick=()=>{$('gintro').hidden=true;$('gintro').dataset.ok='1';start(l);};$('gintro').scrollIntoView({block:'center'});return;}
  delete $('gintro').dataset.ok;$('gtip').hidden=!G[l].mono;lvl=l;score=0;t=G[l].dur||60;$('gs').textContent=0;$('gt').textContent=t;$('gfb').textContent=' ';$('gfb').className='gfb';
  $('gsel').hidden=true;$('gcl').hidden=true;$('gend').hidden=true;$('gplay').hidden=false;kp();next();showRank();$('gplay').scrollIntoView();
